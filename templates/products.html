@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+{% load static %}
+{% static "" as baseUrl %}
+<!-- Shopping Cart -->
+
+<link rel="stylesheet" type="text/css" href="{{baseUrl}}assets/css/shopping_cart.scss"/>
+
+<!-- End Shopping Cart -->
+
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700"
+      rel="stylesheet"
+    />
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link
+      href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}"
+      rel="stylesheet"
+    />
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/tooplate-main.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/owl.css' %}" />
+    {% block custom_style %} {% endblock %}
+  </head>
+
+  <body>
+      <!-- Pre Header -->
+    <div id="pre-header">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8">
+              <span
+                >FREE SHIPPING FOR ALL ORDERS OVER $150 | SAME DAY DISPATCH
+                (ORDERS PLACED BEFORE 4PM)</span
+              >
+            </div>
+            <div class="col-md-4 action_header">
+            {% if authenticated %}
+            <div class="row">
+              <div class="col-md-6" style="padding: 10px;">
+                <p style="color: white;">Welcome {{user.first_name}}</p>
+              </div>
+              <div class="col-md-4" style="padding: 10px;">
+                <a href="/cart" style="font-size: 14px; color: white;">View Cart ({{amount_in_cart}})</a>
+              </div>
+              <div class="col-md-2" style="padding: 10px;">
+                <a href="/logout"><p style="color: white;">Logout</p></a>
+              </div>
+
+              
+            </div>
+              
+            
+            
+            
+            {% else %}
+            <div class="col-md-4">
+              <div class="row">
+                <div class="col-md-6" style="padding: 10px;">
+                  <a href="/login"><p style="color: white;">Login</p></a>
+                </div>
+                <div class="col-md-6" style="padding: 10px;">
+                  <a href="/register"><p style="color: white;">Register</p></a>
+                </div>
+              </div>
+              
+            </div>
+              
+            
+            {% endif %}
+            </div>
+            
+            
+          </div>
+        </div>
+      </div>
+      <!-- Navigation -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+        <div class="container">
+          <a class="navbar-brand" href="#"
+            ><img
+              style="width: 300px"
+              src="{% static 'assets/images/mnm-header-logo.png' %} "
+              alt=""
+          /></a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarResponsive"
+            aria-controls="navbarResponsive"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="../"
+                  >Home
+                  
+                </a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link" href="../products">Products<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../about">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../contact">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    <!-- Page Content -->
+    <!-- Items Starts Here -->
+    <div class="featured-page">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <div class="section-heading">
+              <div class="line-dec"></div>
+              <h1>All products</h1>
+            </div>
+          </div>
+          <div class="col-md-8 col-sm-12">
+            <style>
+              .filters{
+                padding: 10px 50px;
+                float: right;
+              }
+
+              .filters #go{
+                padding: 2px 5px;
+                margin: 0 0;
+                border: none;
+                border-radius: 3px;
+                color: grey;
+                transition: color 0.4s, background-color 0.4s;
+                font-size: 15px;
+              }
+
+              .filters #go:hover{
+                color: white;
+                background-color: #3a8bcd;
+                cursor: pointer;
+              }
+            </style>
+            <form class="filters">
+              <input type="radio" id="all" name="filter" value="0">
+              <label for="all">All</label>
+              <input type="radio" id="featured" name="filter" value="1">
+              <label for="featured">Featured</label>
+              <input type="radio" id="newest" name="filter" value="2">
+              <label for="newest">Newest</label>
+              <input type="radio" id="oldest" name="filter" value="3">
+              <label for="oldest">Oldest</label>
+              <input type="submit" value="Go" id="go"/>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="featured container no-gutter">
+      <div class="row posts">
+        {% for product in products %}
+        
+        <div id="{{forloop.counter}}" class="item new col-md-4" >
+          <a href="{{product.IMEI}}">
+            <div class="featured-item">
+              <img src="{{baseUrl}}assets/images/{{product.model|cut:' '}}/{{product.colour|cut:' '}}/flex.jpg" 
+              alt=""
+              style="height: 250px; width: auto;" />
+              <h4>{{product.model}}</h4>
+              <h6>${{product.sell_price }}</h6>
+              <h6 style="font-size: 10px;">Date added: {{product.date_added}}</h6>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="page-navigation">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <ul>
+              <li class="current-page"><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li>
+                <a href="#"><i class="fa fa-angle-right"></i></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Featred Page Ends Here -->
+
+    <!-- Subscribe Form Starts Here -->
+    <div class="subscribe-form">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="section-heading">
+              <div class="line-dec"></div>
+              <h1>Subscribe on Minto Mobiles now!</h1>
+            </div>
+          </div>
+          <div class="col-md-8 offset-md-2">
+            <div class="main-content">
+              <p>
+               Our newsletter launches soon! Subscribe early!
+              </p>
+              <div class="container">
+                <form id="subscribe" action="" method="get">
+                  <div class="row">
+                    <div class="col-md-7">
+                      <fieldset>
+                        <input
+                          name="email"
+                          type="text"
+                          class="form-control"
+                          id="email"
+                          onfocus="if(this.value == 'Your Email...') { this.value = ''; }"
+                          onBlur="if(this.value == '') { this.value = 'Your Email...';}"
+                          value="Your Email..."
+                          required=""
+                        />
+                      </fieldset>
+                    </div>
+                    <div class="col-md-5">
+                      <fieldset>
+                        <button type="submit" id="form-submit" class="button">
+                          Subscribe Now!
+                        </button>
+                      </fieldset>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Subscribe Form Ends Here -->
+
+    <!-- Footer Starts Here -->
+    <div class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="logo">
+              <img src="assets/images/header-logo.png" alt="" />
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="footer-menu">
+              <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Help</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">How It Works ?</a></li>
+                <li><a href="#">Contact Us</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="social-icons">
+              <ul>
+                <li>
+                  <a href="#"><i class="fa fa-facebook"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-twitter"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-linkedin"></i></a>
+                </li>
+                <li>
+                  <a href="#"><i class="fa fa-rss"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer Ends Here -->
+
+    <!-- Sub Footer Starts Here -->
+    <div class="sub-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="copyright-text">
+              <p>
+                Copyright &copy; 2021 Minto Mobiles - Template:
+                <a rel="nofollow" href="https://www.facebook.com/tooplate"
+                  >Tooplate</a
+                > - Developer: Pri Kundnani
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Sub Footer Ends Here -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Additional Scripts -->
+    <script src="assets/js/custom.js"></script>
+    <script src="assets/js/owl.js"></script>
+    <script src="assets/js/isotope.js"></script>
+
+    <script language="text/Javascript">
+      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+      function clearField(t) {
+        //declaring the array outside of the
+        if (!cleared[t.id]) {
+          // function makes it static and global
+          cleared[t.id] = 1; // you could use true and false, but that's more typing
+          t.value = ""; // with more chance of typos
+          t.style.color = "#fff";
+        }
+      }
+    </script>
+  </body>
+</html>
