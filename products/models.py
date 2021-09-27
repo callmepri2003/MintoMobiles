@@ -33,7 +33,7 @@ class Phone(models.Model):
     IMEI =models.CharField(max_length=15, default=None, null = True, unique=True)
     featured = models.BooleanField(default=False)
     sell_price = models.IntegerField(default=0) #Store in dollars
-    description = models.CharField(max_length=1000, default=None, null=True)
+    description = models.CharField(max_length=100, default=None, null=True)
     photo_link = models.URLField(default=None, null=True)
     date_added = models.DateTimeField(auto_now_add=True, blank=True)
 
