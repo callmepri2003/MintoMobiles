@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='phone',
             name='photoURL',
-            field=models.CharField(default="{% static '<django.db.models.fields.related.ForeignKey>/<django.db.models.fields.related.ForeignKey>' %}", max_length=20),
+            field=models.CharField(default="{% static '<django.db.models.fields.related.ForeignKey>/<django.db.models.fields.related.ForeignKey>' %}", max_length=500),
         ),
     ]
