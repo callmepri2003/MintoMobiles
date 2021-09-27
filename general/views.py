@@ -92,14 +92,21 @@ def register_view(request):
 def about_view(request):
     context = {
         'authenticated': request.user.is_authenticated,
-        'amount_in_cart': len(cartItem.objects.filter(cart = cart.objects.get(user = request.user)))
+        
     }
+
+    if request.user.is_authenticated:
+        context['amount_in_cart'] = len(cartItem.objects.filter(cart = cart.objects.get(user = request.user)))
+
     return render(request, 'about.html', context)
 
 def contact_view(request):
     context = {
         'authenticated': request.user.is_authenticated,
-        'amount_in_cart': len(cartItem.objects.filter(cart = cart.objects.get(user = request.user)))
+        
     }
+
+    if request.user.is_authenticated:
+        context['amount_in_cart'] = len(cartItem.objects.filter(cart = cart.objects.get(user = request.user)))
 
     return render(request, 'contact.html', context)

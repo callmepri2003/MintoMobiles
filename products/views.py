@@ -32,9 +32,12 @@ def single_product_view(request, IMEI):
     context = {
         'product': Phone.objects.get(IMEI = IMEI),
         'authenticated':request.user.is_authenticated,
-        'amount_in_cart': len(cartItem.objects.filter(cart = cart.objects.get(user = request.user))),
+        
     }
 
+    if request.user.is_authenticated:
+        context['amount_in_cart'] = len(cartItem.objects.filter(cart = cart.objects.get(user = request.user)))
+        
     return render(request, 'single-product.html', context)
 
 
@@ -78,8 +81,11 @@ class CreateCheckoutSessionView(View):
 def products_view(request):
     context = {
         'authenticated': request.user.is_authenticated,
-        'amount_in_cart': len(cartItem.objects.filter(cart = cart.objects.get(user = request.user))),
+        
     }
+
+    if request.user.is_authenticated:
+        context['amount_in_cart'] = len(cartItem.objects.filter(cart = cart.objects.get(user = request.user)))
 
     filter = int(request.GET.get('filter', '0'))
     if filter == 0:

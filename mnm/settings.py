@@ -26,7 +26,7 @@ SECRET_KEY = '3r@iiupn-7#@wj-)_l0z5p+%x!$c5)06asl%_z4e$gxa5x0hv&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://minto-mobiles-app.herokuapp.com/', 'minto-mobiles-app.herokuapp.com']
+ALLOWED_HOSTS = ['https://minto-mobiles-app.herokuapp.com/', 'minto-mobiles-app.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -133,7 +133,6 @@ STRIPE_PUBLIC_KEY = ""
 STRIPE_SECRET_KEY = "sk_test_51JaqhJE4DtPtdIVc7mr1poQIpNYdRSNElD8ltzvHtYAsKffaAMm3R4pb3B6h5BcCDCZnp0cMGhNqZwOpgddbsA3L00RKsDF2uo"
 STRIPE_WEBHOOK_SECRET = ""
 
-PROJECT_ROOT = BASE_DIR
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
@@ -142,7 +141,7 @@ STATIC_URL = '/static/'
 
 # Extra lookup directories for collectstatic to find static files
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
+    os.path.join(BASE_DIR, 'static'),
 )
 
 #  Add configuration for static files storage using whitenoise

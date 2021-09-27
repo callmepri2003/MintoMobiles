@@ -5,7 +5,9 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-    
+<script>
+
+</script>
 
     <!-- Page Content -->
     <!-- Banner Starts Here -->
@@ -51,6 +53,7 @@
                     src="{{baseUrl}}assets/images/{{element.model|cut:' '}}/{{element.colour|cut:' '}}/flex.jpg"
                     alt="Item 1"
                     style="height: 250px; width: auto;"
+                    onload="setHref(event, '/assets')"
                   />
                   <h4>{{element.model}}, {{element.storage}}GB</h4>
                   <h6>${{element.sell_price}} | {{element.grade}} grade</h6>
@@ -180,6 +183,9 @@
     <!-- Additional Scripts -->
     <script src="{% static 'assets/js/custom.js' %}"></script>
     <script src="{% static 'assets/js/owl.js' %}"></script>
+
+
+    
 
     <script language="text/Javascript">
       cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
