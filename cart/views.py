@@ -8,7 +8,7 @@ def cart_view(request):
 
     context = {
         'items': items,
-        'total': cart.objects.get(user = request.user).total()/ float(100),
+        'total': cart.objects.get(user = request.user).total(),
         'id': cart.objects.get(user = request.user).id,
         'authenticated': request.user.is_authenticated,
         'amount_in_cart': len(cartItem.objects.filter(cart = cart.objects.get(user = request.user)))
