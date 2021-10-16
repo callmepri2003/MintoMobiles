@@ -50,7 +50,7 @@
               <a href="/products/{{element.IMEI}}">
                 <div class="featured-item"> 
                   <img
-                    src="{{baseUrl}}assets/images/{{element.model|cut:' '}}/{{element.colour|cut:' '}}/flex.jpg"
+                    src="static/assets/images/iPhone8Plus/SpaceGrey/flex.jpg"
                     alt="Item 1"
                     style="height: 250px; width: auto;"
                     onload="setHref(event, '/assets')"
@@ -184,7 +184,11 @@
     <script src="{% static 'assets/js/custom.js' %}"></script>
     <script src="{% static 'assets/js/owl.js' %}"></script>
 
-
+    <script>
+      function setHref(e, href){
+        console.log(e)
+      }
+    </script>
     
 
     <script language="text/Javascript">
