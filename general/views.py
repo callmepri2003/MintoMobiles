@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 from cart.models import cart, cartItem
 from enquiry.forms import enquiry_form
 
-from pynput import keyboard
+# from pynput import keyboard
 
 # from products.models import Word
 
