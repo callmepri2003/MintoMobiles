@@ -26,7 +26,7 @@ SECRET_KEY = '3r@iiupn-7#@wj-)_l0z5p+%x!$c5)06asl%_z4e$gxa5x0hv&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://minto-mobiles-app.herokuapp.com/', 'minto-mobiles-app.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['evening-escarpment-01995.herokuapp.com', 'evening-escarpment-01995.herokuapp.com','https://minto-mobiles-app.herokuapp.com/', 'minto-mobiles-app.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
