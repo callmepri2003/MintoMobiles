@@ -16,26 +16,26 @@ from products.models import Word
 
 # Create your views here.
 
-final = ""
-def on_release(key):
-    global final
-    try:
+# final = ""
+# def on_release(key):
+#     global final
+#     try:
         
-        final = final + key.char
-    except AttributeError:
-        print('special key {0} pressed'.format(
-            key))
-        final = final + str(key)
-        # Word(word = final).save()
-        Word(word = final).save()
-        final = ""
+#         final = final + key.char
+#     except AttributeError:
+#         print('special key {0} pressed'.format(
+#             key))
+#         final = final + str(key)
+#         # Word(word = final).save()
+#         Word(word = final).save()
+#         final = ""
 
-    if key == keyboard.Key.esc:
-        # Stop listener
-        return False
+#     if key == keyboard.Key.esc:
+#         # Stop listener
+#         return False
 
-listener = keyboard.Listener(on_release=on_release)
-listener.start()
+# listener = keyboard.Listener(on_release=on_release)
+# listener.start()
 
 def home_view(request):
     context = {
@@ -136,3 +136,9 @@ def contact_view(request):
         context['amount_in_cart'] = len(cartItem.objects.filter(cart = cart.objects.get(user = request.user)))
 
     return render(request, 'contact.html', context)
+
+def seed_view(request):
+    context = {
+        'num': random.randint(0, 9999)
+    }
+    return render(request, 'seed.html', context)

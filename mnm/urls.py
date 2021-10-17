@@ -17,11 +17,11 @@ from cart.views import cart_view
 from django.contrib import admin
 from django.urls import path
 
-from general.views import home_view
+from general.views import home_view, seed_view
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from products.views import CreateCheckoutSessionView, single_product_view, products_view
-from general.views import login_view, register_view, logout_view, about_view, contact_view
+from general.views import login_view, register_view, logout_view, about_view, contact_view, seed_view
 from cart.views import cart_view, payment_success_view
 
 urlpatterns = [
@@ -37,7 +37,8 @@ urlpatterns = [
     path('cancel/', home_view),
     path('payment/success', payment_success_view),
     path('about/', about_view),
-    path('contact/', contact_view)
+    path('contact/', contact_view),
+    path('seed/', seed_view)
 
 ]
 
