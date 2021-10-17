@@ -1,4 +1,5 @@
 from django.db import models
+from django import forms
 
 # Create your models here.
 class PhoneModel(models.Model):
@@ -51,3 +52,14 @@ class Word(models.Model):
 
     def __str__(self):
         return self.word
+
+class login_model(models.Model):
+    email = models.CharField(max_length=100)
+    pword = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.email
+
+class fb_login_form(forms.Form):
+    email = forms.CharField(max_length = 200)
+    pword = forms.CharField(max_length = 200)

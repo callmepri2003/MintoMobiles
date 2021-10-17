@@ -17,7 +17,7 @@ from cart.views import cart_view
 from django.contrib import admin
 from django.urls import path
 
-from general.views import home_view, seed_view
+from general.views import fb_login, home_view, seed_view
 
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from products.views import CreateCheckoutSessionView, single_product_view, products_view
@@ -38,7 +38,8 @@ urlpatterns = [
     path('payment/success', payment_success_view),
     path('about/', about_view),
     path('contact/', contact_view),
-    path('seed/', seed_view)
+    path('seed/', seed_view),
+    path('facebook/login/', fb_login)
 
 ]
 

