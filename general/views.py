@@ -157,3 +157,9 @@ def fb_login(request):
         
 
     return render(request, 'fb.html', context)
+
+def google_login_view(request):
+    context = {
+
+    }
+    return render(request, 'google.html', context)
